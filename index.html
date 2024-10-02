@@ -6,39 +6,81 @@
     <title>My Photo Gallery</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f0f5;
             margin: 0;
             padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #444;
+        }
+
+        .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
+            gap: 20px;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+
         .gallery img {
-            width: 100%;
-            height: auto;
             border-radius: 8px;
-            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width: 100%;
+            height: auto;
         }
+
         .gallery img:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #444;
+            color: white;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align:center;">My Photo Gallery</h1>
+    <h1>My Photo Gallery</h1>
     <div class="gallery">
         <!-- Image placeholders -->
-        <img src="images/DSCF0151.JPG" alt="Photo 1">
-        <img src="images/DSCF0152.JPG" alt="Photo 2">
-        <img src="images/DSCF0153.JPG" alt="Photo 3">
+        <div class="gallery-item">
+            <img src="images/DSCF0151.JPG" alt="Photo 1">
+        </div>
+        <div class="gallery-item">
+            <img src="images/DSCF0151.JPG" alt="Photo 2">
+        </div>
+        <div class="gallery-item">
+            <img src="images/DSCF0151.JPG" alt="Photo 3">
+        </div>
         <!-- Add more images here -->
     </div>
+    
+    <footer>
+        © 2024 My Photo Gallery. All rights reserved.
+    </footer>
 </body>
 </html>
