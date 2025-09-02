@@ -4,44 +4,66 @@
   <meta charset="UTF-8">
   <title>My Photo Gallery</title>
   <style>
-    body { font-family: sans-serif; background: #111; color: #fff; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-    .gallery img { width: 100%; border-radius: 10px; cursor: pointer; transition: transform 0.2s; }
+    body { font-family: sans-serif; background: #111; color: #fff; margin: 0; padding: 20px; }
+    h1 { text-align: center; }
+    .gallery { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+      gap: 10px; 
+      margin-top: 20px;
+    }
+    .gallery img { 
+      width: 100%; 
+      border-radius: 10px; 
+      cursor: pointer; 
+      transition: transform 0.2s; 
+    }
     .gallery img:hover { transform: scale(1.05); }
     .lightbox { 
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-      justify-content: center; align-items: center; 
+      display: none; 
+      position: fixed; 
+      inset: 0; 
+      background: rgba(0,0,0,0.9); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 1000;
     }
-    .lightbox img { max-width: 90%; max-height: 90%; border-radius: 10px; }
+    .lightbox img { 
+      max-width: 90%; 
+      max-height: 90%; 
+      border-radius: 10px; 
+    }
   </style>
 </head>
 <body>
   <h1>My Photo Gallery</h1>
-  <div class="gallery">
-    <img src="photos/photo1.jpg" alt="">
-    <img src="photos/photo2.jpg" alt="">
-    <img src="photos/photo3.jpg" alt="">
-  </div>
+  <div class="gallery"></div>
 
   <div class="lightbox" id="lightbox">
     <img src="" alt="">
   </div>
 
   <script>
-  fetch("photos/photos.json")
-    .then(res => res.json())
-    .then(files => {
-      const gallery = document.querySelector(".gallery");
-      files.forEach(file => {
-        const img = document.createElement("img");
-        img.src = `photos/${file}`;
-        gallery.appendChild(img);
-        img.addEventListener("click", () => {
-          document.querySelector("#lightbox img").src = img.src;
-          document.getElementById("lightbox").style.display = "flex";
+    fetch("images/photos.json")
+      .then(res => res.json())
+      .then(files => {
+        const gallery = document.querySelector(".gallery");
+        files.forEach(file => {
+          const img = document.createElement("img");
+          img.src = `photos/${file}`;
+          gallery.appendChild(img);
+          img.addEventListener("click", () => {
+            document.querySelector("#lightbox img").src = img.src;
+            document.getElementById("lightbox").style.display = "flex";
+          });
         });
       });
+
+    // close lightbox when clicking outside the image
+    document.getElementById("lightbox").addEventListener("click", (e) => {
+      if (e.target !== e.currentTarget) return;
+      e.currentTarget.style.display = "none";
     });
-</script>
+  </script>
 </body>
 </html>
