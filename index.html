@@ -50,7 +50,7 @@
         const gallery = document.querySelector(".gallery");
         files.forEach(file => {
           const img = document.createElement("img");
-          img.src = `photos/${file}`;
+          img.src = `images/${file}`;
           gallery.appendChild(img);
           img.addEventListener("click", () => {
             document.querySelector("#lightbox img").src = img.src;
